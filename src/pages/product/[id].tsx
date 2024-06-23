@@ -40,7 +40,7 @@ export default function Product({ product }: ProductProps) {
 
       const { checkoutUrl } = response.data;
 
-      // window.location.href = checkoutUrl;
+      window.location.href = checkoutUrl;
     } catch (error) {
       setIsCreatingCheckoutSession(false);
       alert("Falha ao redirecionar para o checkout");
@@ -74,7 +74,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
   params,
 }) => {
-  // const productId =  params && params.id as string;
   const productId = params ? params.id : "";
 
   const product = await stripe.products.retrieve(productId, {
