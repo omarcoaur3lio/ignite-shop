@@ -1,3 +1,4 @@
+import {ShimmerProductDetails} from "@/components/ShimmerProductDetails";
 import { stripe } from "@/lib/stripe";
 import {
   ImageContainer,
@@ -29,7 +30,11 @@ export default function Product({ product }: ProductProps) {
     useState(false);
 
   if (isFallback) {
-    return <h1>Loading...</h1>;
+    return (
+      <ProductContainer>
+        <ShimmerProductDetails />
+      </ProductContainer>
+    );
   }
 
   async function handleBuyProduct() {
