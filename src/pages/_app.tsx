@@ -1,22 +1,15 @@
 import { globalStyles } from "@/styles/global";
 import type { AppProps } from "next/app";
-import { css } from "@stitches/react";
 
 import logoImg from "@/assets/logo.svg";
-import {
-  CartButton,
-  CartItemsAmount,
-  Container,
-  Header,
-} from "@/styles/pages/app";
+import { Container, Header } from "@/styles/pages/app";
 import Image from "next/image";
-import { Handbag, X } from "phosphor-react";
 import { useState } from "react";
 import { CartSidebar } from "@/components/CartSidebar";
+import { CartProvider } from "use-shopping-cart";
+import CartButton from "@/components/CartButton";
 
 globalStyles();
-
-const itensAmount = 1;
 
 export default function App({ Component, pageProps }: AppProps) {
   const [showSidebar, setShowSidebar] = useState("");
@@ -33,20 +26,23 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <Container>
-      <Header>
-        <Image src={logoImg} alt="" />
-        <CartButton onClick={handleShowSidebar}>
-          {itensAmount > 0 && <CartItemsAmount>{itensAmount}</CartItemsAmount>}
-          <Handbag
-            size={24}
-            className={String(
-              itensAmount
-                ? css({ color: "$gray300" })
-                : css({ color: "$gray500" })
-            )}
-          />
-        </CartButton>
-      </Header>
+      <CartProvider
+        mode="payment"
+        shouldPersist={true}
+        cartMode="client-only"
+        stripe={process.env.STRIPE_SECRET_KEY}
+        successUrl="stripe.com"
+        cancelUrl="twitter.com/dayhaysoos"
+        currency="USD"
+        allowedCountries={["US", "GB", "CA"]}
+        billingAddressCollection={true}
+      >
+        <Header>
+          <Image src={logoImg} alt="" />
+          <CartButton onClick={handleShowSidebar} />
+        </Header>
+      </CartProvider>
+
       <CartSidebar hideSidebar={hideSidebar} showSidebar={showSidebar} />
       <Component {...pageProps} />
     </Container>
