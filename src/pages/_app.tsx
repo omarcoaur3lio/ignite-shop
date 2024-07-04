@@ -25,26 +25,21 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   return (
-    <Container>
-      <CartProvider
-        mode="payment"
-        shouldPersist={true}
-        cartMode="client-only"
-        stripe={process.env.STRIPE_SECRET_KEY}
-        successUrl="stripe.com"
-        cancelUrl="twitter.com/dayhaysoos"
-        currency="USD"
-        allowedCountries={["US", "GB", "CA"]}
-        billingAddressCollection={true}
-      >
+    <CartProvider
+      cartMode="checkout-session"
+      stripe={process.env.STRIPE_SECRET_KEY}
+      currency="BRL"
+      shouldPersist={false}
+    >
+      <Container>
         <Header>
           <Image src={logoImg} alt="" />
           <CartButton onClick={handleShowSidebar} />
         </Header>
-      </CartProvider>
 
-      <CartSidebar hideSidebar={hideSidebar} showSidebar={showSidebar} />
-      <Component {...pageProps} />
-    </Container>
+        <CartSidebar hideSidebar={hideSidebar} showSidebar={showSidebar} />
+        <Component {...pageProps} />
+      </Container>
+    </CartProvider>
   );
 }
