@@ -8,6 +8,7 @@ import { useState } from "react";
 import { CartSidebar } from "@/components/CartSidebar";
 import { CartProvider } from "use-shopping-cart";
 import CartButton from "@/components/CartButton";
+import Link from "next/link";
 
 globalStyles();
 
@@ -29,11 +30,13 @@ export default function App({ Component, pageProps }: AppProps) {
       cartMode="checkout-session"
       stripe={process.env.STRIPE_SECRET_KEY}
       currency="BRL"
-      shouldPersist={false}
+      shouldPersist={true}
     >
       <Container>
         <Header>
-          <Image src={logoImg} alt="" />
+          <Link href="/" prefetch={false}>
+            <Image src={logoImg} alt="" />
+          </Link>
           <CartButton onClick={handleShowSidebar} />
         </Header>
 

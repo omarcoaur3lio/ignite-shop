@@ -161,3 +161,24 @@ export const CartViewSideBarContainer = styled("div", {
     },
   },
 });
+
+export const EmptyCartContainer = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "2.5rem 0",
+  color: "$gray500",
+
+  p: {
+    textAlign: "center",
+    maxWidth: 250,
+  },
+
+  svg: {
+    position: "relative",
+    top: 0,
+    right: 0,
+    marginBottom: "1rem",
+  },
+});

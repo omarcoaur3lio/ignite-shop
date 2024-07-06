@@ -11,7 +11,7 @@ export const Container = styled("div", {
   overflow: "hidden",
 });
 
-export const Header = styled("header", {
+export const Header = styled('div', {
   padding: "2rem 0",
   width: "100%",
   maxWidth: 1180,
