@@ -27,7 +27,8 @@ interface ProductProps {
 export default function Product({ product }: ProductProps) {
   const { isFallback } = useRouter();
 
-  const { addItem } = useShoppingCart();
+  const { addItem, cartDetails } = useShoppingCart();
+  const isItemAlreadyInCart = !!cartDetails[product.id];
 
   if (isFallback) {
     return (
@@ -62,7 +63,9 @@ export default function Product({ product }: ProductProps) {
           <h1>{product.name}</h1>
           <span>{product.price}</span>
           <p>{product.description}</p>
-          <button onClick={addProductToCart}>Colocar na sacola</button>
+          <button disabled={isItemAlreadyInCart} onClick={addProductToCart}>
+            Colocar na sacola
+          </button>
         </ProductDetails>
       </ProductContainer>
     </>

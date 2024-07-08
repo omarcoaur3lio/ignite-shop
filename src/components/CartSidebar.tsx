@@ -84,7 +84,7 @@ export function CartSidebar({ showSidebar, hideSidebar }: CartSidebarProps) {
           </div>
 
           <button
-            disabled={isCreatingCheckoutSession}
+            disabled={isCreatingCheckoutSession || cartCount === 0}
             onClick={handleBuyProduct}
           >
             Finalizar compra
