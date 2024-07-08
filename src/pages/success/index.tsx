@@ -16,6 +16,12 @@ interface SuccessProps {
   }[];
 }
 export default function Success({ customerName, products }: SuccessProps) {
+  const { clearCart } = useShoppingCart();
+  useEffect(() => {
+    clearCart();
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <>
       <Head>
