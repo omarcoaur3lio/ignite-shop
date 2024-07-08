@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { styled } from ".";
 
 export const HomeContainer = styled("main", {
@@ -9,7 +8,7 @@ export const HomeContainer = styled("main", {
   minHeight: 656,
 });
 
-export const Product = styled(Link, {
+export const Product = styled("div", {
   background: "linear-gradient(180deg, #1EA483 0%, #7465D4 100%)",
   borderRadius: 8,
   cursor: "pointer",
@@ -60,5 +59,31 @@ export const Product = styled(Link, {
       transform: "translateY(0%)",
       opacity: 1,
     },
+  },
+
+  div: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.25rem",
+  },
+});
+
+export const AddProductButton = styled("button", {
+  backgroundColor: "$green500",
+  color: "$gray100",
+  padding: "0.75rem",
+  borderRadius: 6,
+  border: 0,
+
+  cursor: "pointer",
+  transition: "all 0.2s ease-in-out",
+
+  "&:not(:disabled):hover": {
+    backgroundColor: "$green300",
+  },
+
+  "&:disabled": {
+    opacity: 0.6,
+    cursor: "not-allowed",
   },
 });
